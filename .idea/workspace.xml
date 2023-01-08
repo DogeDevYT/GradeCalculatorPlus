@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e20c469d-4785-48cb-b882-0d9591b6d641" name="Default Changelist" comment="" />
+    <list default="true" id="e20c469d-4785-48cb-b882-0d9591b6d641" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +20,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/GradeCalculatorPlus" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2JvO1B0ZBT5pKtLrv8OZVig0gQy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -27,7 +32,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test_run.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager" selected="Python.Run">
     <configuration name="Run" type="PythonConfigurationType" factoryName="Python">
@@ -104,38 +109,47 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/GradeCalculatorPlus" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1673124487936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1673124487936" />
+    <state x="566" y="114" key="CommitChangelistDialog2" timestamp="1673131439602">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="566" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1673131439602" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1673122791760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1673122791760" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1673125908345">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1673193089388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1673125908345" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1673125908345">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1673193089388" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1673193089388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1673125908345" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1673125908345">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1673193089388" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1673193089388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1673125908345" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1673125908345">
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1673193089388" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1673193089388">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1673125908345" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1672954910702">
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1673193089388" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1673131426211">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1672954910702" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1673122745606">
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1673131426211" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1673186449675">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1673122745606" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1673186449675" />
   </component>
 </project>
