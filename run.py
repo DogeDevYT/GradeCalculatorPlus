@@ -30,10 +30,10 @@ def average(summatives, formatives):
 
 # function to calculate the lowest grade possible and still get the desired score
 def lowest_grade(desiredGrade, summatives, formatives):
-    #(sum(summatives) + x)/(len(summatives)+1) = desiredGrade
+    # (sum(summatives) + x)/(len(summatives)+1) = desiredGrade
 
-    missing_grade_summative = ((desiredGrade * (len(summatives)+1)) - sum(summatives))
-    missing_grade_formative = ((desiredGrade * (len(formatives)+1)) - sum(formatives))
+    missing_grade_summative = ((desiredGrade * (len(summatives) + 1)) - sum(summatives))
+    missing_grade_formative = ((desiredGrade * (len(formatives) + 1)) - sum(formatives))
     return [missing_grade_summative, missing_grade_formative]
 
 
@@ -52,12 +52,14 @@ def calculate_grade_final(summatives, formatives, course):
     print('Average for ' + str(course) + ':' + str(average_grade))
     desired_end_grade = int(input('What is your LOWEST acceptable end grade for ' + str(course) + '? '))
     lowest_grade_possible = lowest_grade(desired_end_grade, summatives, formatives)
-    #print(lowest_grade_possible)
-    print('For ' + str(course) + ' the lowest grade you can get on a summative is a ' + str(lowest_grade_possible[0]) + ' and the lowest grade you can get on a formative is a ' + str(lowest_grade_possible[1]) + ' to get a ' + str(desired_end_grade) + ' in the course')
+    # print(lowest_grade_possible)
+    print('For ' + str(course) + ' the lowest grade you can get on a summative is a ' + str(
+        lowest_grade_possible[0]) + ' and the lowest grade you can get on a formative is a ' + str(
+        lowest_grade_possible[1]) + ' to get a ' + str(desired_end_grade) + ' in the course')
     save = input('Would you like to save these results? (y/n)')
     if save == 'yes' or save == 'y':
-        if (exists('results.csv')):
-            with open('results.csv', 'a') as results: # if the file already exists I just append to the end of it
+        if exists('results.csv'):
+            with open('results.csv', 'a') as results:  # if the file already exists I just append to the end of it
                 # with new data instead of overwriting with write file mode
                 writer = csv.writer(results)
                 # Format: course name, current grade, desired lowest grade, lowest summative, lowest formative,
@@ -82,6 +84,45 @@ def calculate_grade_final(summatives, formatives, course):
         print('Ok...Not saving results for ' + str(course))
 
 
+def course_loop():
+    while True:
+        # reset summative and formative grades for every run of course selection
+        summatives = []
+        formatives = []
+        print('Your options include: ')
+        for course in courses:
+            print(course + ', ', end="")
+        print()  # Fix formatting after enabling weird printing
+        next_course = input('What course would you like to calculate next? (Type \'stop\' to stop)')
+        if next_course == 'stop':
+            print('Goodbye!')
+            exit(0)
+        else:
+            final_query = 'https://campus.forsyth.k12.ga.us/campus/nav-wrapper/student/portal/student/classroom' \
+                          '/grades/student-grades?' + funky_url_parameters + 'classroomSectionID=' + str(
+                courses[next_course])
+            driver.get(final_query)
+            calculate_grade_final(summatives, formatives, next_course)
+
+
+def eoc_analysis():
+    if exists('results.csv'):
+        print('results.csv found, continuing')
+        with open('results.csv', 'r') as results_file:
+            csv_reader = csv.reader(results_file)
+            rows = list(csv_reader)
+            for course_data in range(2, len(rows), 2):  # selects only the courses in the csv table
+                # current grade + x = desired*2
+                # x = desired*2 - current grade
+                lowest_grade_eoc = (int((rows[course_data][2])) * 2) - int(float(rows[course_data][1]))  # Have to
+                # convert this to a float first because its too long to be parsed as an int initially
+                print('For ' + rows[course_data][0] + ' the lowest grade you can get on its EOC/EOCT is a ' + str(
+                    lowest_grade_eoc))
+    else:
+        print('Did you remember to run the \'calculate your grades\' option first (1)')
+        exit('results.csv not found, quitting!')
+
+
 login_credentials = []
 
 with open('login.txt', 'r') as login_file:
@@ -90,37 +131,14 @@ with open('login.txt', 'r') as login_file:
             exit('Missing/improper configuration of login.txt, Aborting...')
         login_credentials.append(line.strip())  # getting rid of newline character
 
-# Create a webdriver object (basically the browser to use)
-# REMEMBER TO DOWNLOAD CHROMEDRIVER EXECUTIBLE AND PLACE IT IN THE SAME DIRECTORY AS THE PYTHON SCRIPT!!
-driver = webdriver.Chrome(executable_path='chromedriver.exe')
-
-# Navigate to the webpage containing the button
-driver.get('https://campus.forsyth.k12.ga.us/campus/portal/students/forsyth.jsp')
-
-# Locate the button by its ID and click on it to start SSO process
-driver.find_element_by_id('samlLoginLink').click()
-
-# enter login data and submit
-driver.find_element_by_id('userNameInput').send_keys(login_credentials[0])
-time.sleep(1)
-driver.find_element_by_id('passwordInput').send_keys(login_credentials[1])
-time.sleep(1)
-driver.find_element_by_id('submitButton').click()
-
-# wait for load
-time.sleep(5)
-
-# navigate to grades page
-driver.find_element_by_id('menu-toggle-button').click()
-time.sleep(1)
-driver.find_element_by_partial_link_text('Grades').click()
-
 # parse through courses.txt and input the courses and their ids into a dictionary(<course name>, <course id in
 # Infinite Campus>)
 courses = defaultdict(list)
 with open("courses.txt") as courses_file:
     for line in courses_file:
-        course_name, course_id = line.split(":", 1)
+        course_name, course_id = line.split(":",
+                                            1)  # parse through courses.txt and split it at the colon to get the
+        # course name and course id on Infinite Campus
         courses[course_name] = course_id.strip()  # gotta remove the newline character (\n)
 
 # parse through query.txt to get other necessary parameters for the end URL query
@@ -130,7 +148,6 @@ with open("query.txt") as query_file:
         funky_url_parameters += line
         funky_url_parameters += "&"
 
-
 ################################
 #           TESTING            #
 #                              #
@@ -138,26 +155,44 @@ with open("query.txt") as query_file:
 #                              #
 ################################
 
-# make final query
-# final_query = 'https://campus.forsyth.k12.ga.us/campus/nav-wrapper/student/portal/student/classroom/grades/student-grades?' + funky_url_parameters + "classroomSectionID=" + str(courses["AP American Lit Lang/Comp"])
-# open course in selenium
-# driver.get(final_query)
+# EXAMPLE QUERY
 
-def course_loop():
-    while True:
-        # reset summative and formative grades for every run of program
-        summatives = []
-        formatives = []
-        print(courses.keys())
-        next_course = input('What course would you like to calculate next? (Type \'stop\' to stop)')
-        if next_course == 'stop':
-            print('Goodbye!')
-            exit(0)
-        else:
-            final_query = 'https://campus.forsyth.k12.ga.us/campus/nav-wrapper/student/portal/student/classroom/grades/student-grades?' + funky_url_parameters + 'classroomSectionID=' + str(
-                courses[next_course])
-            driver.get(final_query)
-            calculate_grade_final(summatives, formatives, next_course)
+# make final query final_query = 'https://campus.forsyth.k12.ga.us/campus/nav-wrapper/student/portal/student
+# /classroom/grades/student-grades?' + funky_url_parameters + "classroomSectionID=" + str(courses["AP American Lit
+# Lang/Comp"]) open course in selenium driver.get(final_query)
 
 
-course_loop()
+print('Welcome to GradeCalculatorPlus!')
+print('You can either calculate your grades (1) or analyze your eoc possibilities (2)')
+option = int(input('Which option do you want? (1/2)'))
+
+if option == 1:
+    # Create a webdriver object (basically the browser to use)
+    # REMEMBER TO DOWNLOAD CHROMEDRIVER EXECUTIBLE AND PLACE IT IN THE SAME DIRECTORY AS THE PYTHON SCRIPT!!
+    driver = webdriver.Chrome(executable_path='chromedriver.exe')
+
+    # Navigate to the webpage containing the button
+    driver.get('https://campus.forsyth.k12.ga.us/campus/portal/students/forsyth.jsp')
+
+    # Locate the button by its ID and click on it to start SSO process
+    driver.find_element_by_id('samlLoginLink').click()
+
+    # enter login data and submit
+    driver.find_element_by_id('userNameInput').send_keys(login_credentials[0])
+    time.sleep(1)
+    driver.find_element_by_id('passwordInput').send_keys(login_credentials[1])
+    time.sleep(1)
+    driver.find_element_by_id('submitButton').click()
+
+    # wait for load
+    time.sleep(5)
+
+    # navigate to grades page
+    driver.find_element_by_id('menu-toggle-button').click()
+    time.sleep(1)
+    driver.find_element_by_partial_link_text('Grades').click()
+    # I need to put chromedriver script here otherwise the course_loop() function won't be able to find the driver
+    # object
+    course_loop()
+if option == 2:
+    eoc_analysis()
