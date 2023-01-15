@@ -8,7 +8,7 @@
 - ~~Do your work for you~~ It actually can't its never that easy and you should've actually done the assignment man
 ### How can I run this epic software?
 1. Remember to create a login.txt file in the same directory as the run.py script
-2. Check that the chromedriver.exe file is in the same directory as the run.py script
+2. Check that the chromedriver.exe file is in the same directory as the run.py script. If you don't have it check your Chrome version and download the correct chrome driver for it here: https://chromedriver.chromium.org/downloads
 3. "python run.py"
 ### What technologies does this use?
 - Selenium webdriver
