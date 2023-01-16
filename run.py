@@ -1,9 +1,10 @@
-from selenium import webdriver
-from collections import defaultdict
-from statistics import mean
-from os.path import exists
-import time
 import csv
+import time
+from collections import defaultdict
+from os.path import exists
+from statistics import mean
+
+from selenium import webdriver
 
 summative_weighting_factor = 0.75
 formative_weighting_factor = 0.25
@@ -82,6 +83,7 @@ def calculate_grade_final(summatives, formatives, course):
                 print('Results successfully written!')
     else:
         print('Ok...Not saving results for ' + str(course))
+        print('You should consider it though because it allows you to perform EOC analysis later')
 
 
 def course_loop():
@@ -115,7 +117,7 @@ def eoc_analysis():
                 # current grade + x = desired*2
                 # x = desired*2 - current grade
                 lowest_grade_eoc = (int((rows[course_data][2])) * 2) - int(float(rows[course_data][1]))  # Have to
-                # convert this to a float first because its too long to be parsed as an int initially
+                # convert this to a float first because it's too long to be parsed as an int initially
                 print('For ' + rows[course_data][0] + ' the lowest grade you can get on its EOC/EOCT is a ' + str(
                     lowest_grade_eoc))
     else:
@@ -139,7 +141,7 @@ with open("courses.txt") as courses_file:
         course_name, course_id = line.split(":",
                                             1)  # parse through courses.txt and split it at the colon to get the
         # course name and course id on Infinite Campus
-        courses[course_name] = course_id.strip()  # gotta remove the newline character (\n)
+        courses[course_name] = course_id.strip()  # I've got to remove the newline character (\n)
 
 # parse through query.txt to get other necessary parameters for the end URL query
 funky_url_parameters = ''
@@ -168,7 +170,7 @@ option = int(input('Which option do you want? (1/2)'))
 
 if option == 1:
     # Create a webdriver object (basically the browser to use)
-    # REMEMBER TO DOWNLOAD CHROMEDRIVER EXECUTIBLE AND PLACE IT IN THE SAME DIRECTORY AS THE PYTHON SCRIPT!!
+    # REMEMBER TO DOWNLOAD CHROMEDRIVER EXECUTABLE AND PLACE IT IN THE SAME DIRECTORY AS THE PYTHON SCRIPT!!
     driver = webdriver.Chrome(executable_path='chromedriver.exe')
 
     # Navigate to the webpage containing the button
