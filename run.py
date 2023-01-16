@@ -196,5 +196,7 @@ if option == 1:
     # I need to put chromedriver script here otherwise the course_loop() function won't be able to find the driver
     # object
     course_loop()
-if option == 2:
+elif option == 2:
     eoc_analysis()
+else:
+    exit('Invalid menu option, quitting...')
