@@ -156,3 +156,7 @@ login.txt
 
 # not upload results file because its uniquely generated every time
 results.csv
+
+#not uploading the recordings of program running
+eoc calculation.mp4
+grade calcuation.mp4

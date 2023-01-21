@@ -166,7 +166,7 @@ with open("query.txt") as query_file:
 
 print('Welcome to GradeCalculatorPlus!')
 print('You can either calculate your grades (1) or analyze your eoc possibilities (2)')
-option = int(input('Which option do you want? (1/2)'))
+option = int(input('Which option do you want? (1/2)'))   
 
 if option == 1:
     # Create a webdriver object (basically the browser to use)
@@ -196,6 +196,7 @@ if option == 1:
     # I need to put chromedriver script here otherwise the course_loop() function won't be able to find the driver
     # object
     course_loop()
+    driver.close() #closes the chrome window automatically
 elif option == 2:
     eoc_analysis()
 else:
